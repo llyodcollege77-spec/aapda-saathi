@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aapda Saathi — Emergency & Community Help</title>
+
+<style>
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --primary:#2457d6;
+  --danger:#e53935;
+  --success:#168a4b;
+  --warning:#f59e0b;
+  --border:#dfe5ef;
+  --shadow:0 8px 28px rgba(25,40,70,.09);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
+#loginPage{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:linear-gradient(135deg,#eaf1ff,#f8fbff);
+}
+
+.login-card{
+  width:min(470px,100%);
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 15px 45px rgba(20,40,80,.15);
+  text-align:center;
+}
+
+/* CSS LOGO - NO BROKEN BASE64 */
+
+.logo-box{
+  width:110px;
+  height:90px;
+  margin:0 auto 10px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#2457d6,#e53935);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:34px;
+  font-weight:900;
+  box-shadow:0 8px 20px rgba(36,87,214,.25);
+}
+
+.login-title{
+  font-size:30px;
+  font-weight:900;
+  margin:5px 0;
+  color:#2457d6;
+}
+
+.login-title span{
+  color:#c62828;
+}
+
+.tagline{
+  color:#555;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.india-flag{
+  width:100px;
+  height:60px;
+  margin:12px auto 20px;
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.flag-orange{
+  height:33.33%;
+  background:#ff9933;
+}
+
+.flag-white{
+  height:33.33%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.flag-green{
+  height:33.33%;
+  background:#138808;
+}
+
+.ashoka{
+  width:20px;
+  height:20px;
+  border:3px solid #000080;
+  border-radius:50%;
+  position:relative;
+}
+
+.ashoka:after{
+  content:"";
+  position:absolute;
+  width:5px;
+  height:5px;
+  background:#000080;
+  border-radius:50%;
+  top:5px;
+  left:5px;
+}
+
+.login-heading{
+  font-size:26px;
+  margin:8px 0 20px;
+}
+
+.form-group{
+  text-align:left;
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px;
+  font-size:16px;
+}
+
+.form-group input{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+  font-size:16px;
+}
+
+.form-group input:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px #e4ebff;
+}
+
+.continue-btn{
+  width:100%;
+  padding:15px;
+  background:linear-gradient(135deg,#2457d6,#3970ed);
+  color:white;
+  border-radius:12px;
+  font-weight:800;
+  margin-top:5px;
+  font-size:16px;
+}
+
+.continue-btn:active{
+  transform:scale(.98);
+}
+
+.login-error{
+  display:none;
+  margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  background:#fff0f0;
+  color:#b91c1c;
+  font-size:14px;
+  text-align:left;
+}
+
+.notice{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:#fff8e7;
+  border:1px solid #f3dfad;
+  color:#765800;
+  font-size:12px;
+  text-align:left;
+}
+
+
+/* =====================================================
+   MAIN APP
+===================================================== */
+
+#app{
+  display:none;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 4%;
+}
+
+.header-logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:20px;
+  font-weight:900;
+}
+
+.header-logo-icon{
+  width:45px;
+  height:45px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#2457d6,#e53935);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.header-logo-text{
+  color:#b91c1c;
+}
+
+.header-logo-text span{
+  color:#2457d6;
+}
+
+nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+nav button{
+  background:#eef3ff;
+  color:#2147aa;
+  padding:9px 12px;
+  border-radius:10px;
+  font-weight:700;
+}
+
+.logout-btn{
+  background:#ffe8e8;
+  color:#b91c1c;
+}
+
+.container{
+  width:min(1200px,92%);
+  margin:22px auto;
+}
+
+.hero{
+  background:linear-gradient(135deg,#172554,#2448a8);
+  color:white;
+  border-radius:20px;
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+.hero-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.hero-logo{
+  width:65px;
+  height:60px;
+  border-radius:12px;
+  background:#fff;
+  color:#2457d6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  font-weight:900;
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:32px;
+}
+
+.hero p{
+  max-width:780px;
+  line-height:1.55;
+  color:#e6edff;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:18px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.card h2{
+  margin:0 0 8px;
+  font-size:20px;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.btn{
+  padding:12px 15px;
+  border-radius:10px;
+  font-weight:700;
+}
+
+.primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.danger{
+  background:var(--danger);
+  color:#fff;
+}
+
+.success{
+  background:var(--success);
+  color:#fff;
+}
+
+.warning{
+  background:var(--warning);
+  color:#fff;
+}
+
+.secondary{
+  background:#edf1f7;
+  color:#1f2937;
+}
+
+.wide{
+  width:100%;
+}
+
+.status{
+  padding:9px 12px;
+  border-radius:10px;
+  background:#fff3cd;
+  color:#765800;
+  display:inline-block;
+  margin-top:8px;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+textarea,
+input,
+select{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px;
+  background:#fff;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.small{
+  font-size:13px;
+}
+
+.result{
+  background:#f7f9fc;
+  border:1px solid var(--border);
+  padding:14px;
+  border-radius:10px;
+  margin-top:10px;
+  line-height:1.55;
+}
+
+.service{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  border-bottom:1px solid var(--border);
+}
+
+.service:last-child{
+  border-bottom:0;
+}
+
+.service a{
+  color:#2457d6;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.help-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.help-btn{
+  padding:15px;
+  background:#f3f6fb;
+  border:1px solid var(--border);
+  border-radius:12px;
+  text-align:left;
+}
+
+.help-btn:hover{
+  background:#eaf0ff;
+}
+
+.timeline{
+  display:grid;
+  gap:9px;
+  margin-top:10px;
+}
+
+.step{
+  padding:12px;
+  border-radius:10px;
+  background:#f7f8fb;
+  border-left:5px solid #cbd5e1;
+}
+
+.step.done{
+  border-left-color:var(--success);
+  background:#ecfdf3;
+}
+
+.step.current{
+  border-left-color:var(--warning);
+  background:#fffbeb;
+}
+
+.post{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  margin-top:12px;
+}
+
+.post img{
+  max-width:180px;
+  max-height:180px;
+  border-radius:10px;
+  margin-top:8px;
+  display:block;
+}
+
+.alert-list{
+  display:grid;
+  gap:10px;
+}
+
+.alert{
+  padding:13px;
+  border-radius:11px;
+  background:#fff4f4;
+  border-left:5px solid var(--danger);
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:30px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:800px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .help-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  nav{
+    display:none;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .help-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:26px;
+  }
+
+  .login-card{
+    padding:20px;
+  }
+
+  .login-title{
+    font-size:26px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<section id="loginPage">
+
+  <div class="login-card">
+
+    <div class="logo-box">
+      AS
+    </div>
+
+    <div class="login-title">
+      AAPDA <span>SAATHI</span>
+    </div>
+
+    <div class="tagline">
+      ❤️ Helping Each Other • Saving Lives
+    </div>
+
+
+    <div class="india-flag">
+      <div class="flag-orange"></div>
+
+      <div class="flag-white">
+        <div class="ashoka"></div>
+      </div>
+
+      <div class="flag-green"></div>
+    </div>
+
+
+    <div class="login-heading">
+      Login / Continue
+    </div>
+
+
+    <form id="loginForm">
+
+      <div class="form-group">
+
+        <label>
+          👤 Full Name
+        </label>
+
+        <input
+          type="text"
+          id="loginName"
+          placeholder="Enter your full name"
+          autocomplete="name"
+          required>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          📱 Mobile Number
+        </label>
+
+        <input
+          type="tel"
+          id="loginMobile"
+          placeholder="Enter 10 digit mobile number"
+          maxlength="10"
+          inputmode="numeric"
+          autocomplete="tel"
+          required>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          📧 Email ID
+        </label>
+
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Enter your email address"
+          autocomplete="email"
+          required>
+
+      </div>
+
+
+      <button
+        class="continue-btn"
+        type="submit"
+        id="continueBtn">
+
+        Continue to Aapda Saathi
+
+      </button>
+
+
+      <div
+        id="loginError"
+        class="login-error">
+      </div>
+
+    </form>
+
+
+    <div class="notice">
+
+      <b>Prototype Notice:</b><br>
+
+      This is a demo version.
+      Your details are used only for this browser session.
+      Real emergency systems require secure authentication,
+      a database and verified responder services.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN APPLICATION
+===================================================== -->
+
+<div id="app">
+
+
+<header>
+
+  <div class="header-logo">
+
+    <div class="header-logo-icon">
+      AS
+    </div>
+
+    <div class="header-logo-text">
+      AAPDA <span>SAATHI</span>
+    </div>
+
+  </div>
+
+
+  <nav>
+
+    <button onclick="go('emergency')">
+      Emergency
+    </button>
+
+    <button onclick="go('ai')">
+      Aapda AI
+    </button>
+
+    <button onclick="go('alerts')">
+      Alerts
+    </button>
+
+    <button onclick="go('community')">
+      Community
+    </button>
+
+    <button
+      class="logout-btn"
+      onclick="logout()">
+      Logout
+    </button>
+
+  </nav>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="hero-brand">
+
+    <div class="hero-logo">
+      AS
+    </div>
+
+    <div>
+
+      <strong>
+        🇮🇳 AAPDA SAATHI
+      </strong>
+
+      <div>
+        ❤️ Helping Each Other • Saving Lives
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="welcomeText"></div>
+
+
+  <h1>
+    Emergency help, made simple.
+  </h1>
+
+
+  <p>
+    One place to request help, share your location,
+    contact emergency services, get general safety guidance,
+    report hazards and see community help updates.
+  </p>
+
+
+  <div class="row">
+
+    <button
+      class="btn danger"
+      onclick="triggerSOS()">
+
+      🚨 SEND SOS
+
+    </button>
+
+
+    <button
+      class="btn secondary"
+      onclick="getLocation()">
+
+      📍 Get My Location
+
+    </button>
+
+
+    <span
+      id="locationStatus"
+      class="status">
+
+      Location not detected
+
+    </span>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EMERGENCY + VOICE + AI + LOCATION
+===================================================== -->
+
+<div class="grid">
+
+
+<section
+  class="card"
+  id="emergency">
+
+  <h2>
+    🚨 Emergency Request
+  </h2>
+
+  <p class="muted">
+    Fill this only with information needed
+    for emergency coordination.
+  </p>
+
+
+  <textarea
+    id="emergencyMsg"
+    placeholder="Example: I need rescue near the village school.">
+  </textarea>
+
+
+  <div
+    class="row"
+    style="margin-top:10px">
+
+    <select id="urgency">
+
+      <option>Critical</option>
+      <option>High</option>
+      <option>Normal</option>
+
+    </select>
+
+
+    <button
+      class="btn primary"
+      onclick="sendEmergency()">
+
+      Send Help Request
+
+    </button>
+
+  </div>
+
+
+  <div id="requestResult"></div>
+
+</section>
+
+
+
+<section class="card">
+
+  <h2>
+    🎙️ Voice SOS
+  </h2>
+
+  <p class="muted">
+    Uses your browser microphone permission.
+    This demo converts speech to text.
+  </p>
+
+
+  <button
+    id="voiceBtn"
+    class="btn danger wide"
+    onclick="startVoice()">
+
+    🎙️ Start Voice SOS
+
+  </button>
+
+
+  <div
+    id="voiceText"
+    class="result">
+
+    Voice message will appear here.
+
+  </div>
+
+</section>
+
+
+
+<section
+  class="card"
+  id="ai">
+
+  <h2>
+    🤖 Aapda AI Guidance
+  </h2>
+
+  <p class="muted">
+    Ask a general safety question.
+  </p>
+
+
+  <textarea
+    id="aiQuestion"
+    placeholder="Example: What should I do during a flood?">
+  </textarea>
+
+
+  <button
+    class="btn primary"
+    style="margin-top:10px"
+    onclick="askAI()">
+
+    Ask Aapda AI
+
+  </button>
+
+
+  <div
+    id="aiAnswer"
+    class="result">
+
+    AI answer will appear here.
+
+  </div>
+
+</section>
+
+
+
+<section class="card">
+
+  <h2>
+    📍 Share Location
+  </h2>
+
+  <p class="muted">
+    Your browser must allow location access.
+  </p>
+
+
+  <div
+    id="locationBox"
+    class="result">
+
+    No location yet.
+
+  </div>
+
+
+  <button
+    class="btn success"
+    onclick="getLocation()">
+
+    Get GPS Location
+
+  </button>
+
+
+  <button
+    class="btn secondary"
+    onclick="shareLocation()">
+
+    Share Location
+
+  </button>
+
+</section>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     HELP TYPES
+===================================================== -->
+
+<section
+  class="card"
+  style="margin-top:18px">
+
+<h2>
+  🤝 What Help Do You Need?
+</h2>
+
+
+<div class="help-grid">
+
+
+<button
+  class="help-btn"
+  onclick="requestType('Food')">
+
+  🍚 <b>Food</b><br>
+
+  <span class="muted">
+    Food or essential supplies
+  </span>
+
+</button>
+
+
+
+<button
+  class="help-btn"
+  onclick="requestType('Medicine')">
+
+  💊 <b>Medicine</b><br>
+
+  <span class="muted">
+    Basic medical assistance
+  </span>
+
+</button>
+
+
+
+<button
+  class="help-btn"
+  onclick="requestType('Shelter')">
+
+  🏠 <b>Shelter</b><br>
+
+  <span class="muted">
+    Temporary safe place
+  </span>
+
+</button>
+
+
+
+<button
+  class="help-btn"
+  onclick="requestType('Rescue')">
+
+  🚑 <b>Rescue</b><br>
+
+  <span class="muted">
+    Tell responders you need rescue
+  </span>
+
+</button>
+
+
+</div>
+
+
+<div id="helpResult"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVICES + HELP PROVIDER
+===================================================== -->
+
+<div class="grid">
+
+
+<section
+  class="card"
+  id="services">
+
+<h2>
+  📞 Emergency Services — India
+</h2>
+
+
+<div class="service">
+
+  <span>
+    🇮🇳 Unified Emergency
+  </span>
+
+  <a href="tel:112">
+    112
+  </a>
+
+</div>
+
+
+<div class="service">
+
+  <span>
+    👮 Police
+  </span>
+
+  <a href="tel:112">
+    112
+  </a>
+
+</div>
+
+
+<div class="service">
+
+  <span>
+    🚒 Fire & Rescue
+  </span>
+
+  <a href="tel:101">
+    101
+  </a>
+
+</div>
+
+
+<div class="service">
+
+  <span>
+    🚑 Ambulance
+  </span>
+
+  <a href="tel:108">
+    108
+  </a>
+
+</div>
+
+
+<div class="service">
+
+  <span>
+    🚺 Women Helpline
+  </span>
+
+  <a href="tel:181">
+    181
+  </a>
+
+</div>
+
+
+<div class="service">
+
+  <span>
+    👶 Child Helpline
+  </span>
+
+  <a href="tel:1098">
+    1098
+  </a>
+
+</div>
+
+
+<p class="muted small">
+  In a real emergency, use the official
+  emergency service available in your area.
+</p>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>
+  🧑‍🚒 Help Provider Mode
+</h2>
+
+
+<p class="muted">
+  People who want to help can register
+  what they can safely provide.
+</p>
+
+
+<input
+  id="helperName"
+  placeholder="Your name / organisation">
+
+
+<select
+  id="helperType"
+  style="margin-top:10px">
+
+  <option>Food</option>
+  <option>Medicine</option>
+  <option>Transport</option>
+  <option>Shelter</option>
+  <option>Volunteer / Rescue</option>
+
+</select>
+
+
+<button
+  class="btn success wide"
+  style="margin-top:10px"
+  onclick="provideHelp()">
+
+  I Can Provide Help
+
+</button>
+
+
+<div id="providerResult"></div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+     STATUS
+===================================================== -->
+
+<section
+  class="card"
+  style="margin-top:18px"
+  id="status">
+
+<h2>
+  📊 Government / Rescue Help Status
+</h2>
+
+
+<p class="muted">
+  Demo tracker. A production version needs
+  a verified government/responder backend.
+</p>
+
+
+<div class="timeline">
+
+ <div class="step done">
+   ✅ Request created
+ </div>
+
+ <div class="step current">
+   🟡 Waiting for responder
+ </div>
+
+ <div class="step">
+   ⚪ Responder assigned
+ </div>
+
+ <div class="step">
+   ⚪ Help delivered
+ </div>
+
+</div>
+
+
+<button
+  class="btn primary"
+  style="margin-top:12px"
+  onclick="simulateStatus()">
+
+  Simulate Status Update
+
+</button>
+
+
+<div id="statusResult"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ALERTS
+===================================================== -->
+
+<section
+  class="card"
+  style="margin-top:18px"
+  id="alerts">
+
+<h2>
+  ⚠️ Community Safety Alerts
+</h2>
+
+
+<p class="muted">
+  People can report dangerous roads,
+  flooded areas, fallen trees,
+  unsafe buildings, etc.
+</p>
+
+
+<div
+  class="alert-list"
+  id="alertsList">
+
+ <div class="alert">
+
+   ⚠️ DEMO:
+   Avoid an unsafe/flooded road until
+   authorities verify it.
+
+ </div>
+
+</div>
+
+
+<textarea
+  id="hazardText"
+  placeholder="Example: Road blocked near the bridge after heavy rain.">
+</textarea>
+
+
+<div
+  class="row"
+  style="margin-top:10px">
+
+<button
+  class="btn warning"
+  onclick="reportHazard()">
+
+  Report Hazard
+
+</button>
+
+
+<button
+  class="btn secondary"
+  onclick="clearHazards()">
+
+  Clear demo alerts
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COMMUNITY
+===================================================== -->
+
+<section
+  class="card"
+  style="margin-top:18px"
+  id="community">
+
+<h2>
+  💬 Community Help & Proof
+</h2>
+
+
+<p class="muted">
+  Share a short update about help received/provided.
+</p>
+
+
+<input
+  id="postName"
+  placeholder="Name / nickname">
+
+
+<textarea
+  id="postText"
+  style="margin-top:10px"
+  placeholder="Example: Food reached our family. Thank you.">
+</textarea>
+
+
+<input
+  id="postPhoto"
+  type="file"
+  accept="image/*"
+  style="margin-top:10px">
+
+
+<button
+  class="btn primary"
+  style="margin-top:10px"
+  onclick="postCommunity()">
+
+  Post Update
+
+</button>
+
+
+<div id="posts"></div>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+  🇮🇳 Aapda Saathi
+  • Helping Each Other
+  • Saving Lives
+
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let currentLocation = null;
+let loggedInUser = null;
+
+
+/* =====================================================
+   LOGIN SYSTEM
+===================================================== */
+
+const loginForm =
+  document.getElementById("loginForm");
+
+
+loginForm.addEventListener("submit", function(event){
+
+  event.preventDefault();
+
+
+  const name =
+    document.getElementById("loginName")
+    .value
+    .trim();
+
+
+  const mobile =
+    document.getElementById("loginMobile")
+    .value
+    .trim();
+
+
+  const email =
+    document.getElementById("loginEmail")
+    .value
+    .trim();
+
+
+  const error =
+    document.getElementById("loginError");
+
+
+  error.style.display = "none";
+  error.textContent = "";
+
+
+  /* NAME CHECK */
+
+  if(name.length < 2){
+
+    showLoginError(
+      "Please enter your full name."
+    );
+
+    return;
+  }
+
+
+  /* MOBILE CHECK */
+
+  if(!/^[0-9]{10}$/.test(mobile)){
+
+    showLoginError(
+      "Please enter a valid 10 digit mobile number."
+    );
+
+    return;
+  }
+
+
+  /* EMAIL CHECK */
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+    showLoginError(
+      "Please enter a valid email address."
+    );
+
+    return;
+  }
+
+
+  /* SAVE USER IN MEMORY */
+
+  loggedInUser = {
+    name:name,
+    mobile:mobile,
+    email:email
+  };
+
+
+  /*
+    localStorage is OPTIONAL.
+    If browser blocks it, login will still work.
+  */
+
+  try{
+
+    localStorage.setItem(
+      "aapdaSaathiUser",
+      JSON.stringify(loggedInUser)
+    );
+
+  }catch(e){
+
+    console.log(
+      "Storage unavailable. Continuing without storage."
+    );
+
+  }
+
+
+  /* OPEN APP */
+
+  openApp(loggedInUser);
+
+});
+
+
+/* =====================================================
+   SHOW LOGIN ERROR
+===================================================== */
+
+function showLoginError(message){
+
+  const error =
+    document.getElementById("loginError");
+
+  error.textContent = message;
+
+  error.style.display = "block";
+
+}
+
+
+/* =====================================================
+   OPEN MAIN APP
+===================================================== */
+
+function openApp(user){
+
+  document.getElementById("loginPage")
+    .style.display = "none";
+
+
+  document.getElementById("app")
+    .style.display = "block";
+
+
+  document.getElementById("welcomeText")
+    .innerHTML =
+      "👋 Welcome, <b>" +
+      escapeHtml(user.name) +
+      "</b>";
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+  if(!confirm("Do you want to logout?")){
+    return;
+  }
+
+
+  loggedInUser = null;
+
+
+  try{
+
+    localStorage.removeItem(
+      "aapdaSaathiUser"
+    );
+
+  }catch(e){}
+
+
+  document.getElementById("app")
+    .style.display = "none";
+
+
+  document.getElementById("loginPage")
+    .style.display = "flex";
+
+
+  document.getElementById("loginForm")
+    .reset();
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function go(id){
+
+  const element =
+    document.getElementById(id);
+
+  if(element){
+
+    element.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  }
+
+}
+
+
+/* =====================================================
+   SOS
+===================================================== */
+
+function triggerSOS(){
+
+  const msg =
+    document.getElementById("emergencyMsg")
+    .value
+    .trim() ||
+    "SOS — I need emergency assistance.";
+
+
+  const ok =
+    confirm(
+      "Send SOS request?\n\n" +
+      "This prototype creates a local demo request."
+    );
+
+
+  if(!ok){
+    return;
+  }
+
+
+  sendEmergency(msg,true);
+
+}
+
+
+/* =====================================================
+   EMERGENCY REQUEST
+===================================================== */
+
+function sendEmergency(
+  forcedMsg = null,
+  isSOS = false
+){
+
+  const msg =
+    forcedMsg !== null
+      ? forcedMsg
+      : document.getElementById("emergencyMsg")
+          .value
+          .trim();
+
+
+  if(!msg){
+
+    alert(
+      "Please write a short emergency message first."
+    );
+
+    return;
+  }
+
+
+  const id =
+    "APS-" +
+    Date.now()
+      .toString()
+      .slice(-8);
+
+
+  let locationText =
+    "GPS not available";
+
+
+  if(currentLocation){
+
+    locationText =
+      "GPS: " +
+      currentLocation.lat.toFixed(5) +
+      ", " +
+      currentLocation.lng.toFixed(5);
+
+  }
+
+
+  document.getElementById("requestResult")
+    .innerHTML =
+
+    '<div class="result">' +
+
+    '<b>' +
+    (isSOS
+      ? '🚨 SOS Request Created'
+      : '✅ Help Request Created') +
+    '</b>' +
+
+    '<br>' +
+
+    'Incident ID: <b>' +
+    id +
+    '</b>' +
+
+    '<br><br>' +
+
+    escapeHtml(msg) +
+
+    '<br><br>' +
+
+    escapeHtml(locationText) +
+
+    '<br><br>' +
+
+    '<span class="muted">' +
+    'Prototype mode: connect a backend/SMS service ' +
+    'for real responder delivery.' +
+    '</span>' +
+
+    '</div>';
+
+}
+
+
+/* =====================================================
+   LOCATION
+===================================================== */
+
+function getLocation(){
+
+  const status =
+    document.getElementById(
+      "locationStatus"
+    );
+
+
+  const box =
+    document.getElementById(
+      "locationBox"
+    );
+
+
+  if(!navigator.geolocation){
+
+    status.textContent =
+      "GPS not supported";
+
+    box.textContent =
+      "Your browser does not support GPS.";
+
+    return;
+  }
+
+
+  status.textContent =
+    "Requesting location...";
+
+
+  navigator.geolocation.getCurrentPosition(
+
+    function(position){
+
+      currentLocation = {
+
+        lat:
+          position.coords.latitude,
+
+        lng:
+          position.coords.longitude
+
+      };
+
+
+      const link =
+        "https://www.google.com/maps?q=" +
+        currentLocation.lat +
+        "," +
+        currentLocation.lng;
+
+
+      status.textContent =
+        "Location detected";
+
+
+      box.innerHTML =
+
+        "<b>Coordinates:</b> " +
+
+        currentLocation.lat.toFixed(6) +
+
+        ", " +
+
+        currentLocation.lng.toFixed(6) +
+
+        "<br><br>" +
+
+        '<a href="' +
+        link +
+        '" target="_blank">' +
+
+        "📍 Open Google Maps" +
+
+        "</a>";
+
+    },
+
+
+    function(error){
+
+      status.textContent =
+        "Location unavailable";
+
+
+      box.textContent =
+        "Could not get location. " +
+        "Please allow location permission in your browser.";
+
+    },
+
+    {
+
+      enableHighAccuracy:true,
+
+      timeout:10000,
+
+      maximumAge:0
+
+    }
+
+  );
+
+}
+
+
+/* =====================================================
+   SHARE LOCATION
+===================================================== */
+
+async function shareLocation(){
+
+  if(!currentLocation){
+
+    alert(
+      "First click 'Get GPS Location'."
+    );
+
+    return;
+  }
+
+
+  const text =
+    "My current location:\n" +
+    "https://www.google.com/maps?q=" +
+    currentLocation.lat +
+    "," +
+    currentLocation.lng;
+
+
+  if(navigator.share){
+
+    try{
+
+      await navigator.share({
+
+        title:"Aapda Saathi Location",
+
+        text:text
+
+      });
+
+    }catch(e){
+
+      console.log(
+        "Share cancelled."
+      );
+
+    }
+
+  }else{
+
+    try{
+
+      await navigator.clipboard.writeText(text);
+
+      alert(
+        "Location link copied."
+      );
+
+    }catch(e){
+
+      alert(
+        text
+      );
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   VOICE SOS
+===================================================== */
+
+function startVoice(){
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+
+  if(!SpeechRecognition){
+
+    document.getElementById(
+      "voiceText"
+    ).textContent =
+      "Voice recognition is not supported. " +
+      "Try Chrome.";
+
+    return;
+  }
+
+
+  const recognition =
+    new SpeechRecognition();
+
+
+  recognition.lang =
+    "en-IN";
+
+
+  recognition.interimResults =
+    false;
+
+
+  recognition.maxAlternatives =
+    1;
+
+
+  const voiceBtn =
+    document.getElementById(
+      "voiceBtn"
+    );
+
+
+  const voiceText =
+    document.getElementById(
+      "voiceText"
+    );
+
+
+  voiceBtn.textContent =
+    "🎙️ Listening...";
+
+
+  voiceText.textContent =
+    "Listening... Please speak.";
+
+
+  recognition.onresult =
+    function(event){
+
+      const text =
+        event.results[0][0]
+          .transcript;
+
+
+      voiceText.textContent =
+        "You said: " +
+        text;
+
+
+      document.getElementById(
+        "emergencyMsg"
+      ).value = text;
+
+    };
+
+
+  recognition.onerror =
+    function(event){
+
+      voiceText.textContent =
+        "Voice error: " +
+        event.error +
+        ". Check microphone permission.";
+
+    };
+
+
+  recognition.onend =
+    function(){
+
+      voiceBtn.textContent =
+        "🎙️ Start Voice SOS";
+
+    };
+
+
+  try{
+
+    recognition.start();
+
+  }catch(e){
+
+    voiceBtn.textContent =
+      "🎙️ Start Voice SOS";
+
+  }
+
+}
+
+
+/* =====================================================
+   AAPDA AI
+===================================================== */
+
+function askAI(){
+
+  const q =
+    document.getElementById(
+      "aiQuestion"
+    ).value
+    .trim()
+    .toLowerCase();
+
+
+  if(!q){
+
+    alert(
+      "Please ask a question."
+    );
+
+    return;
+  }
+
+
+  let answer = "";
+
+
+  if(
+    q.includes("flood") ||
+    q.includes("baadh")
+  ){
+
+    answer =
+      "During a flood, avoid floodwater and " +
+      "do not cross flooded roads or bridges. " +
+      "Move to a safer higher location if advised " +
+      "and follow official local alerts.";
+
+  }
+
+
+  else if(
+    q.includes("fire") ||
+    q.includes("aag")
+  ){
+
+    answer =
+      "Move away from fire and smoke, warn " +
+      "people nearby and contact emergency services. " +
+      "Do not enter a burning building.";
+
+  }
+
+
+  else if(
+    q.includes("earthquake") ||
+    q.includes("bhukamp")
+  ){
+
+    answer =
+      "During an earthquake, drop, cover and hold on. " +
+      "Stay away from windows and objects that can fall. " +
+      "After shaking stops, follow official instructions.";
+
+  }
+
+
+  else if(
+    q.includes("accident") ||
+    q.includes("injury") ||
+    q.includes("chot")
+  ){
+
+    answer =
+      "Move to a safe place and contact emergency " +
+      "services if needed. Avoid moving a seriously " +
+      "injured person unless there is immediate danger.";
+
+  }
+
+
+  else if(
+    q.includes("fever") ||
+    q.includes("bukhar")
+  ){
+
+    answer =
+      "For fever, rest and drink enough fluids. " +
+      "Tell a parent, guardian or trusted adult. " +
+      "For serious or worsening symptoms, seek medical care.";
+
+  }
+
+
+  else{
+
+    answer =
+      "This prototype has a limited offline safety " +
+      "knowledge base. A production Aapda AI can be " +
+      "connected to a secure AI service with verified " +
+      "safety information and human escalation.";
+
+  }
+
+
+  document.getElementById(
+    "aiAnswer"
+  ).textContent = answer;
+
+}
+
+
+/* =====================================================
+   HELP TYPE
+===================================================== */
+
+function requestType(type){
+
+  document.getElementById(
+    "helpResult"
+  ).innerHTML =
+
+    '<div class="result">' +
+
+    "✅ " +
+    escapeHtml(type) +
+    " request selected. " +
+
+    "Add your details in Emergency Request " +
+    "and create an incident." +
+
+    "</div>";
+
+
+  go("emergency");
+
+}
+
+
+/* =====================================================
+   PROVIDE HELP
+===================================================== */
+
+function provideHelp(){
+
+  const name =
+    document.getElementById(
+      "helperName"
+    ).value.trim();
+
+
+  const type =
+    document.getElementById(
+      "helperType"
+    ).value;
+
+
+  if(!name){
+
+    alert(
+      "Enter a name or organisation."
+    );
+
+    return;
+  }
+
+
+  document.getElementById(
+    "providerResult"
+  ).innerHTML =
+
+    '<div class="result">' +
+
+    "🤝 Thank you, <b>" +
+
+    escapeHtml(name) +
+
+    "</b>.<br>" +
+
+    "You can provide: <b>" +
+
+    escapeHtml(type) +
+
+    "</b>." +
+
+    "</div>";
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function simulateStatus(){
+
+  const steps =
+    document.querySelectorAll(
+      "#status .step"
+    );
+
+
+  let current =
+    -1;
+
+
+  for(
+    let i=0;
+    i<steps.length;
+    i++
+  ){
+
+    if(
+      steps[i]
+        .classList
+        .contains("current")
+    ){
+
+      current=i;
+
+      break;
+
+    }
+
+  }
+
+
+  if(current>=0){
+
+    steps[current]
+      .classList
+      .remove("current");
+
+
+    steps[current]
+      .classList
+      .add("done");
+
+  }
+
+
+  if(
+    current+1 <
+    steps.length
+  ){
+
+    steps[current+1]
+      .classList
+      .add("current");
+
+  }
+
+
+  document.getElementById(
+    "statusResult"
+  ).innerHTML =
+
+    '<div class="result">' +
+
+    "✅ Demo status updated successfully." +
+
+    "</div>";
+
+}
+
+
+/* =====================================================
+   HAZARD REPORT
+===================================================== */
+
+function reportHazard(){
+
+  const text =
+    document.getElementById(
+      "hazardText"
+    ).value.trim();
+
+
+  if(!text){
+
+    alert(
+      "Describe the hazard first."
+    );
+
+    return;
+  }
+
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+
+  div.className =
+    "alert";
+
+
+  div.innerHTML =
+
+    "⚠️ <b>Community Report:</b> " +
+
+    escapeHtml(text) +
+
+    "<br>" +
+
+    '<span class="muted">' +
+
+    "Pending verification" +
+
+    "</span>";
+
+
+  document.getElementById(
+    "alertsList"
+  ).prepend(div);
+
+
+  document.getElementById(
+    "hazardText"
+  ).value = "";
+
+}
+
+
+/* =====================================================
+   CLEAR HAZARDS
+===================================================== */
+
+function clearHazards(){
+
+  document.getElementById(
+    "alertsList"
+  ).innerHTML =
+
+    '<div class="alert">' +
+
+    "⚠️ No community reports currently displayed." +
+
+    "</div>";
+
+}
+
+
+/* =====================================================
+   COMMUNITY POST
+===================================================== */
+
+function postCommunity(){
+
+  const name =
+    document.getElementById(
+      "postName"
+    ).value.trim() ||
+    "Anonymous";
+
+
+  const text =
+    document.getElementById(
+      "postText"
+    ).value.trim();
+
+
+  const file =
+    document.getElementById(
+      "postPhoto"
+    ).files[0];
+
+
+  if(!text){
+
+    alert(
+      "Write an update first."
+    );
+
+    return;
+  }
+
+
+  if(
+    file &&
+    file.size >
+    4 * 1024 * 1024
+  ){
+
+    alert(
+      "Please choose an image smaller than 4 MB."
+    );
+
+    return;
+  }
+
+
+  const post =
+    document.createElement(
+      "div"
+    );
+
+
+  post.className =
+    "post";
+
+
+  post.innerHTML =
+
+    "<b>💬 " +
+    escapeHtml(name) +
+    "</b>" +
+
+    "<p>" +
+    escapeHtml(text) +
+    "</p>" +
+
+    '<div class="muted">' +
+
+    new Date().toLocaleString() +
+
+    "</div>";
+
+
+  if(file){
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      function(){
+
+        const img =
+          document.createElement(
+            "img"
+          );
+
+
+        img.src =
+          reader.result;
+
+
+        img.alt =
+          "Community uploaded photo";
+
+
+        post.appendChild(img);
+
+      };
+
+
+    reader.readAsDataURL(file);
+
+  }
+
+
+  document.getElementById(
+    "posts"
+  ).prepend(post);
+
+
+  document.getElementById(
+    "postText"
+  ).value = "";
+
+
+  document.getElementById(
+    "postPhoto"
+  ).value = "";
+
+}
+
+
+/* =====================================================
+   SECURITY HELPER
+===================================================== */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(
+      /[&<>"']/g,
+      function(char){
+
+        return {
+
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#039;"
+
+        }[char];
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   PAGE START
+===================================================== */
+
+(function(){
+
+  /*
+    IMPORTANT:
+    We intentionally do NOT automatically
+    open the app from localStorage.
+
+    This guarantees that the login page
+    appears correctly whenever the file
+    is opened again.
+  */
+
+  document.getElementById(
+    "loginPage"
+  ).style.display = "flex";
+
+
+  document.getElementById(
+    "app"
+  ).style.display = "none";
+
+})();
+
+</script>
+
+</body>
+</html>
